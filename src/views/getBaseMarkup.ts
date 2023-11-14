@@ -1,12 +1,12 @@
-import { DocumentInfo } from '../models/DocumentInfo';
+import { FileInfo } from '../models/FileInfo';
 
-export function getBaseMarkup(infos: DocumentInfo[], hrefBase: string) {
+export function getBaseMarkup(infos: FileInfo[], hrefBase: string) {
   const rowsMarkup = infos
-    .map(({ title, filename }) => {
+    .map(({ title, transName }) => {
       return `<tr>
                 <td>${title}</td>
-                <td><a href="${hrefBase}/${filename}">Открыть</a></td>
-                <td><a href="${hrefBase}/${filename}.sig">Скачать</a></td>
+                <td><a href="${hrefBase}/${transName}" target="_blank">Открыть</a></td>
+                <td><a href="${hrefBase}/${transName}.sig">Скачать</a></td>
               </tr>`;
     })
     .join('');
