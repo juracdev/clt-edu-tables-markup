@@ -1,8 +1,11 @@
 import { transliterate as tr } from 'transliteration';
 import * as path from 'node:path';
 import { FileInfo } from '../models/FileInfo';
+import { generateRandomString } from '../utils/stringUtils';
 
 export function transliterFilenames(filenames: string[]): FileInfo[] {
+  const randomStr = generateRandomString(6);
+
   return filenames.map((inputName) => {
     const isSigFile = inputName.endsWith('.sig');
 
@@ -11,7 +14,8 @@ export function transliterFilenames(filenames: string[]): FileInfo[] {
     const ext = path.extname(inputName);
     const basename = path.basename(inputName, ext);
     const trBaseName = tr(clearName(basename));
-    let transName = `${trBaseName}${ext}`;
+
+    let transName = `${trBaseName}__${randomStr}${ext}`;
 
     if (isSigFile) {
       transName = `${transName}.sig`;
