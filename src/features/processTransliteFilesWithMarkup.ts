@@ -1,12 +1,14 @@
 import * as path from 'node:path';
 import * as fsPromises from 'node:fs/promises';
 import { transliterFilenames } from '../utils/transliterFilenames';
-import { clearDirectory } from '../utils/fileUtils';
+import { clearDirectory, ensureDirectoryExists } from '../utils/fileUtils';
 import { getBaseMarkup } from '../views/getBaseMarkup';
 
 export async function processTransliteFilesWithMarkup(hrefBase: string) {
   const inputPath = path.join(__dirname, '../data/input');
   const outputPath = path.join(__dirname, '../data/output');
+
+  await ensureDirectoryExists(outputPath);
 
   /*  Create transliteral names for files */
   const inputFiles = await fsPromises.readdir(inputPath);
@@ -32,11 +34,11 @@ export async function processTransliteFilesWithMarkup(hrefBase: string) {
 
   const markup = getBaseMarkup(commonInfos, hrefBase);
 
-  const outFileName = path.join(
-    __dirname,
-    '../data/outputHtml',
-    `markup-${Date.now()}.html`
-  );
+  const outputHtmlPath = path.join(__dirname, '../data/outputHtml');
+
+  await ensureDirectoryExists(outputHtmlPath);
+
+  const outFileName = path.join(outputHtmlPath, `markup-${Date.now()}.html`);
 
   await fsPromises.appendFile(outFileName, markup);
 }

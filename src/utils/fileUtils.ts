@@ -7,3 +7,7 @@ export async function clearDirectory(folderPath: string) {
     await fsPromises.unlink(path.resolve(folderPath, file));
   }
 }
+
+export async function ensureDirectoryExists(folderPath: string) {
+  await fsPromises.mkdir(folderPath, { recursive: true });
+}
