@@ -1,4 +1,3 @@
-````markdown
 # Создание разметки для страницы сайта `/sveden/education`
 
 ## Подготовка к запуску
@@ -11,7 +10,6 @@
    ```bash
    git clone https://github.com/juracdev/clt-edu-tables-markup.git
    ```
-````
 
 3. **Установите зависимости**  
    Перейдите в директорию проекта и установите необходимые зависимости:
@@ -76,7 +74,3 @@
    "/uploads/DOCUMENTS/sved-education/2025/om/bak/gp/b1b1-filosofiya__YGacvF.pdf"
    "/uploads/DOCUMENTS/sved-education/2025/om/bak/gp/b1b1-filosofiya__YGacvF.pdf.sig"
    ```
-
-```
-
-```
